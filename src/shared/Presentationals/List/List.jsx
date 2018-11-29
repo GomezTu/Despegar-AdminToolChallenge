@@ -24,13 +24,11 @@ class List extends React.Component {
   }
 
   handleEdit = (delivery) => {
-    debugger;
     this.props.selectDelivery(delivery);
     this.props.history.push('/delivery/' + delivery.id);
   }
 
   handleDelete = (delivery) => {
-    debugger;
     this.props.deleteDelivery(delivery.id);
   }
 

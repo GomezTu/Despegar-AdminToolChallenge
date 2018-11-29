@@ -41,14 +41,24 @@ class AppRouter extends Component {
       selectDelivery,
       deleteDelivery,
       updateDelivery,
-      createDelivery } = this.props;
+      createDelivery,
+      recoverDelivery } = this.props;
     
     const deliveryList = () => (
-      <List deleteDelivery={deleteDelivery} selectDelivery={selectDelivery} onFilterChange={changeFilter} filters={filters} filter={filter} deliveries={deliveries} />
+      <List deleteDelivery={deleteDelivery}
+        selectDelivery={selectDelivery}
+        onFilterChange={changeFilter}
+        filters={filters}
+        filter={filter}
+        deliveries={deliveries} />
     );
 
     const deliveryForm = () => (
-      <Form createDelivery={createDelivery} updateDelivery={updateDelivery} selectedDelivery={selectedDelivery} />
+      <Form totalresults={deliveries.length}
+        recoverDelivery={recoverDelivery}
+        createDelivery={createDelivery}
+        updateDelivery={updateDelivery}
+        selectedDelivery={selectedDelivery} />
     );
 
     return (

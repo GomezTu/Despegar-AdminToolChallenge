@@ -12,11 +12,17 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     const { selectedDelivery } = this.props;
-    const isEdit = !!Object.keys(selectedDelivery).length;
     this.state = {
       ...selectedDelivery,
-      isValid: isEdit,
     };
+    this.validateForm();
+  }
+
+  componentDidMount() {
+    const { match: { params } } = this.props;
+    if (this.props.totalresults > parseInt(params.id) > 0) {
+      this.props.recoverDelivery(parseInt(params.id));
+    } 
   }
 
   validateForm = () => {
@@ -38,16 +44,13 @@ class Form extends React.Component {
   }
 
   handleChange = (evt) => {
-    debugger;
     if (evt.target) {
-      debugger;
       this.setState({
         [evt.target.name]: evt.target.value,
       }, () => {
         this.validateForm();
       });
     } else if (evt.isAdmin) {
-      debugger;
       const adminContact = evt;
       this.setState({
         adminContact,
@@ -55,7 +58,6 @@ class Form extends React.Component {
         this.validateForm();
       });
     } else {
-      debugger;
       const comercialContact = evt;
       this.setState({
         comercialContact,

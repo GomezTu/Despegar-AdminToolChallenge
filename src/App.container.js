@@ -8,7 +8,8 @@ import { getDeliveries,
   selectDelivery,
   deleteDelivery,
   updateDelivery,
-  createDelivery } from "./store/actions";
+  createDelivery,
+  recoverDelivery } from "./store/actions";
 import { getFilteredDeliveries } from './store/selector';
 
 const mapStateToProps = (state) => {
@@ -33,6 +34,7 @@ const dispatchActionsToProps = (dispatch) => {
       deleteDelivery,
       updateDelivery,
       createDelivery,
+      recoverDelivery,
     },
     dispatch
   );

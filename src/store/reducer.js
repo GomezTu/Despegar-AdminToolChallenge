@@ -24,6 +24,8 @@ export default (state = initialState, action) => {
       return { ...state, deliveries: newDeliveries };
     case types.DELIVERY_SELECT:
       return { ...state, selectedDelivery: action.payload };
+    case types.DELIVERY_RECOVER:
+      return { ...state, selectedDelivery: state.deliveries.filter((d) => d.id === action.payload)[0] }
     case types.CHANGE_FILTER:
       return { ...state, filter: action.payload };
     case types.RAISE_ERROR:

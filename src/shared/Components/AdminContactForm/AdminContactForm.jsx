@@ -12,7 +12,6 @@ class AdminContactForm extends React.Component {
   }
 
   handleChange = (evt) => {
-    debugger;
     this.setState({
       [evt.target.name]: evt.target.value,
     }, () => {

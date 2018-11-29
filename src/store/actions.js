@@ -25,6 +25,11 @@ export const deleteDelivery = (id) => ({
   payload: id,
 });
 
+export const recoverDelivery = (id) => ({
+  type: types.DELIVERY_RECOVER,
+  payload: id,
+});
+
 export const updateDelivery = (delivery) => ({
   type: types.DELIVERY_UPDATE,
   payload: delivery,
