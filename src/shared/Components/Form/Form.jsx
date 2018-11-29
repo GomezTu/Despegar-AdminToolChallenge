@@ -1,7 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { inputsForm } from '../../../constants/shared';
+import { TimePicker } from '@progress/kendo-react-dateinputs';
+import _ from 'lodash';
+import { inputsForm, adminContactInputs, comercialContactInputs } from '../../../constants/shared';
+import AdminContactForm from '../AdminContactForm/AdminContactForm'
+import './form.css';
 
 const DELIVERY_LIST_TITLE = 'Datos administrativos';
 
@@ -17,31 +20,50 @@ class Form extends React.Component {
   }
 
   validateForm = () => {
-
-    const requiredInputs = inputsForm.filter((i) => i.isRequired);
+    const requiredInputs = (inputsForm.concat(adminContactInputs).concat(comercialContactInputs)).filter((i) => i.isRequired);
     const isValid = requiredInputs.reduce((acum, i) => {
       let a, b;
       if (typeof acum === 'object') {
-        a = !!(this.state[acum.name]);
-        b = !!this.state[i.name];
-        return a && b;
+        a = !!(_.get(this.state, acum.validateField, false));
+        b = !!(_.get(this.state, i.validateField, false));
       }
       if (typeof acum === 'boolean' ) {
         a = acum;
-        b = !!this.state[i.name];
-        return a && b;
+        b = !!(_.get(this.state, i.validateField, false));
       }
+      return a && b;
     });
 
     if (isValid !== this.state.isValid) this.setState({ isValid });
   }
 
   handleChange = (evt) => {
-    this.setState({
-      [evt.target.name]: evt.target.value,
-    }, () => {
-      this.validateForm();
-    });
+    debugger;
+    if (evt.target) {
+      debugger;
+      this.setState({
+        [evt.target.name]: evt.target.value,
+      }, () => {
+        this.validateForm();
+      });
+    } else if (evt.isAdmin) {
+      debugger;
+      const adminContact = evt;
+      this.setState({
+        adminContact,
+      }, () => {
+        this.validateForm();
+      });
+    } else {
+      debugger;
+      const comercialContact = evt;
+      this.setState({
+        comercialContact,
+      }, () => {
+        this.validateForm();
+      });
+    }
+    
   }
 
   handleCancel = () => {
@@ -61,7 +83,7 @@ class Form extends React.Component {
   render() {
     return (
       <div>
-        <div className='col-12' style={{ marginTop: '20px', marginBottom: '20px' }}>
+        <div className='col-12 title_header'>
           <div className='row-fluid'>
             <div className='col-12 d-inline-block titleContainer'>
               <div className='float-left col-9 title'>
@@ -73,16 +95,81 @@ class Form extends React.Component {
           </div>
         </div>
         {
-          inputsForm.map((i) => {
+          inputsForm.map((i, idx) => {
             const Component = i.component;
             return (
-              <div className='col-6'>
-                <Component onChange={this.handleChange} value={this.state[i.name]} {...i} />
+              <div key={idx} className='col-6'>
+                <Component key={idx} onChange={this.handleChange} value={this.state[i.name]} {...i} />
               </div>
             );
           })
         }
-        <div className='col-11'>
+        {/* Time Picker */}
+        <div className='col-6 d-flex'>
+          <div className='col-4 timePicker_wrapper form-group'>
+            <div className='input-group'>
+              <div className='input-group-prepend'>
+                <span 
+                  className="input-group-text timePicker_label" id="inputGroup-sizing-default">From</span>
+              </div>
+              <TimePicker
+                value={this.state['from']}
+                dateInput={true}
+                onChange={this.handleChange}
+                name={'from'}
+                format="HH:mm"
+                formatPlaceholder={{ hour: 'h', minute: 'm' }} />
+            </div>
+          </div>
+          <div className='col-4 timePicker_wrapper form-group'>
+            <div className='input-group'>
+              <div className='input-group-prepend'>
+                <span
+                  className="input-group-text timePicker_label" id="inputGroup-sizing-default">To</span>
+              </div>
+              <TimePicker
+                value={this.state['to']}
+                dateInput={true}
+                onChange={this.handleChange}
+                name={'to'}
+                format="HH:mm"
+                formatPlaceholder={{ hour: 'h', minute: 'm' }} />
+            </div>
+          </div>
+        </div>
+        {/* Admin Contact */}
+        <div className='col-12 d-flex'>
+          <div className='timePicker_wrapper col-6'>
+            <div className='row-fluid'>
+              <div className='col-12 d-inline-block titleContainer title_header'>
+                <div className='float-left col-9 title'>
+                  <span>
+                    Contacto administrativo
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <AdminContactForm config={adminContactInputs} onChange={this.handleChange} isAdmin={true} value={this.state.adminContact} />
+            </div>
+          </div>
+          <div className='timePicker_wrapper col-6'>
+            <div className='row-fluid'>
+              <div className='col-12 d-inline-block titleContainer title_header'>
+                <div className='float-left col-9 title'>
+                  <span>
+                    Contacto comercial
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <AdminContactForm config={comercialContactInputs} onChange={this.handleChange} isAdmin={false} value={this.state.comercialContact} />
+            </div>
+          </div>
+        </div>
+        {/* Buttons */}
+        <div className='col-11 button_container'>
           <div className='float-right'>
             <button className='btn btn-lg btn-primary'
               onClick={this.handleCancel}>Cancelar</button>

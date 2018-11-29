@@ -30,14 +30,18 @@ class Input extends React.Component {
   }
 
   render() {
-    const { name, value, label, placeholder, type, length } = this.props;
+    const { name, value, label, placeholder, type, length, append } = this.props;
   
     return (
       <div className='form-group'>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default">{label}</span>
-          </div>
+        <div className="input-group">
+          {
+            append && (
+              <div className="input-group-prepend">
+                <span className="input-group-text" id="inputGroup-sizing-default">{label}</span>
+              </div>
+            )
+          }
           <input
             type={type}
             name={name}
@@ -45,10 +49,17 @@ class Input extends React.Component {
             maxLength={length}
             onChange={(evt) => this.handleOnChange(evt)}
             onBlur={(evt) => this.handleBlur(evt)}
-            class="form-control"
+            className="form-control"
             placeholder={placeholder}
             aria-label="Default"
             aria-describedby="inputGroup-sizing-default" />
+            {
+            !append && (
+              <div className="input-group-prepend">
+                <span className="input-group-text" id="inputGroup-sizing-default">{label}</span>
+              </div>
+            )
+          }
         </div>
         <span className='help-block float-right'
           style={{ color: 'red', fontWeight: 'bold' }}>{this.state.errorMessage}</span>
@@ -63,11 +74,13 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   label: PropTypes.string,
   onChange: PropTypes.func,
+  append: PropTypes.bool,
 }
 
 Input.defaultProps = {
   type: 'text',
   placeholder: '',
+  append: true,
 }
 
 export default Input;

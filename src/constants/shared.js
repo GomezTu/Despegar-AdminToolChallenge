@@ -32,6 +32,7 @@ export const inputsForm = [
     isRequired: true,
     length: 50,
     component: Input,
+    validateField: ['name'],
   },
   {
     label: 'Telefono',
@@ -47,6 +48,7 @@ export const inputsForm = [
     isRequired: true,
     length: 1000,
     component: TextArea,
+    validateField: ['description'],
   },
   {
     label: 'Especialidades',
@@ -61,11 +63,76 @@ export const inputsForm = [
     isRequired: true,
     length: 50,
     component: Input,
+    validateField: ['address'],
   },
-  // {
-  //   label: 'Horario de atencion',
-  //   name: 'time',
-  //   isRequired: true,
-  //   length: 50,
-  // },
+];
+
+export const adminContactInputs = [
+  {
+    label: 'Nombre',
+    name: 'name',
+    isRequired: true,
+    length: 200,
+    component: Input,
+    validateField: ['adminContact', 'name'],
+  },
+  {
+    label: 'Apellido',
+    name: 'lastName',
+    isRequired: true,
+    length: 200,
+    component: Input,
+    validateField: ['adminContact', 'lastName'],
+  },
+  {
+    label: 'Telefono',
+    name: 'phone',
+    isRequired: true,
+    length: 100,
+    component: Input,
+    validateField: ['adminContact', 'phone'],
+  },
+  {
+    label: 'Email',
+    name: 'email',
+    isRequired: true,
+    length: 50,
+    component: Input,
+    validateField: ['adminContact', 'email'],
+  },
+];
+
+export const comercialContactInputs = [
+  {
+    label: 'Nombre',
+    name: 'name',
+    isRequired: true,
+    length: 200,
+    component: Input,
+    validateField: ['comercialContact', 'name'],
+  },
+  {
+    label: 'Apellido',
+    name: 'lastName',
+    isRequired: true,
+    length: 200,
+    component: Input,
+    validateField: ['comercialContact', 'lastName'],
+  },
+  {
+    label: 'Telefono',
+    name: 'phone',
+    isRequired: true,
+    length: 100,
+    component: Input,
+    validateField: ['comercialContact', 'phone'],
+  },
+  {
+    label: 'Email',
+    name: 'email',
+    isRequired: true,
+    length: 50,
+    component: Input,
+    validateField: ['comercialContact', 'email'],
+  },
 ];

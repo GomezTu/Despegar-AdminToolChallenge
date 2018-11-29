@@ -5,10 +5,8 @@ const deliveryMock = [
     description: 'Mock Description',
     specialty: 'Mock Speciality',
     address: 'Calle 5 nro 1548',
-    time: {
-      from: '',
-      to: '',
-    },
+    from: '',
+    to: '',
     phoneNumber: '456 715 42',
     adminContact: {
       name: 'Admin Mock Name',
@@ -25,10 +23,8 @@ const deliveryMock = [
     description: 'Mock Description',
     specialty: 'Mock Speciality',
     address: 'Calle 126 nro 1542',
-    time: {
-      from: '',
-      to: '',
-    },
+    from: '',
+    to: '',
     phoneNumber: '125 164 48',
     adminContact: {
       name: 'Mock Name',
@@ -45,10 +41,8 @@ const deliveryMock = [
     description: 'Mock Description',
     specialty: 'Mock Speciality',
     address: 'Calle 44 nro 2365',
-    time: {
-      from: '',
-      to: '',
-    },
+    from: '',
+    to: '',
     phoneNumber: '(0221) 154 135 4548',
     adminContact: {
       name: 'Admin Mock Name',
@@ -70,10 +64,8 @@ const deliveryMock = [
     description: 'Mock Description',
     specialty: 'Mock Speciality',
     address: 'Calle 121 nro 458',
-    time: {
-      from: '',
-      to: '',
-    },
+    from: '',
+    to: '',
     phoneNumber: '156 456 12',
     adminContact: {
       name: 'Admin Mock Name',
@@ -95,10 +87,8 @@ const deliveryMock = [
     description: 'Mock Description',
     specialty: 'Mock Speciality',
     address: 'Calle Falsa nro 123',
-    time: {
-      from: '',
-      to: '',
-    },
+    from: '',
+    to: '',
     phoneNumber: '(011) 4247 2611',
     adminContact: {
       name: 'Admin Mock Name',

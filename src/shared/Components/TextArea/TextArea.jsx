@@ -35,16 +35,16 @@ class TextArea extends React.Component {
 
     return (
       <div className='form-group'>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default">{label}</span>
+        <div className="input-group">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="inputGroup-sizing-default">{label}</span>
           </div>
           <textarea
             name={name}
             value={value}
             onChange={(evt) => this.handleOnChange(evt)}
             onBlur={(evt) => this.handleBlur(evt)}
-            class="form-control"
+            className="form-control"
             placeholder={placeholder}
             aria-label="Default"
             maxLength={length}
