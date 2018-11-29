@@ -44,7 +44,7 @@ class List extends React.Component {
       'edit': this.handleEdit,
       'delete': this.handleDelete,
     };
-    const { deliveries, filter, onFilterChange, filters } = this.props;
+    const { deliveries, filter, onFilterChange, filters, setOrder, order } = this.props;
 
     return (
       <div className='col-12' style={{ marginTop: '20px' }}>
@@ -65,7 +65,11 @@ class List extends React.Component {
 
         <Filter onFilterChange={onFilterChange} filter={filter} filters={filters} />
 
-        <Grid buttonActions={buttonActions} deliveries={this.state.deliveries} cols={columnsConfig} />
+        <Grid setOrder={setOrder}
+          buttonActions={buttonActions}
+          deliveries={this.state.deliveries}
+          cols={columnsConfig}
+          order={order} />
         <Pager
           items={deliveries}
           onChangePage={this.onPagerChangePage}

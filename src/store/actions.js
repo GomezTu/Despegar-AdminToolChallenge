@@ -40,6 +40,11 @@ export const createDelivery = (delivery) => ({
   payload: delivery,
 });
 
+export const setOrder = (field, order, sort) => ({
+  type: types.SET_ORDER,
+  payload: { field, order, sort },
+});
+
 export const getDeliverySuccess = (deliveries) => ({
   type: types.GET_DELIVERY_SUCCESS,
   payload: deliveries,

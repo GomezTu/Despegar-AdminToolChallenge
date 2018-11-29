@@ -42,7 +42,9 @@ class AppRouter extends Component {
       deleteDelivery,
       updateDelivery,
       createDelivery,
-      recoverDelivery } = this.props;
+      recoverDelivery,
+      setOrder,
+      order, } = this.props;
     
     const deliveryList = () => (
       <List deleteDelivery={deleteDelivery}
@@ -50,7 +52,9 @@ class AppRouter extends Component {
         onFilterChange={changeFilter}
         filters={filters}
         filter={filter}
-        deliveries={deliveries} />
+        deliveries={deliveries}
+        setOrder={setOrder}
+        order={order} />
     );
 
     const deliveryForm = () => (

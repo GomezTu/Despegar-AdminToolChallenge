@@ -1,4 +1,5 @@
 import { filtersConfig } from '../constants/shared';
+import { noop } from '@progress/kendo-react-common';
 
 const initialState = {
   deliveries: [],
@@ -12,6 +13,7 @@ const initialState = {
   order: {
     field: '',
     order: '',
+    sort: noop,
   },
   error: undefined,
   fetching: false,

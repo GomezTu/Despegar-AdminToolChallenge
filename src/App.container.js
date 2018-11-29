@@ -9,12 +9,13 @@ import { getDeliveries,
   deleteDelivery,
   updateDelivery,
   createDelivery,
-  recoverDelivery } from "./store/actions";
-import { getFilteredDeliveries } from './store/selector';
+  recoverDelivery,
+  setOrder } from "./store/actions";
+import { getSortedDeliveries } from './store/selector';
 
 const mapStateToProps = (state) => {
   return({
-    deliveries: getFilteredDeliveries(state),
+    deliveries: getSortedDeliveries(state),
     selectedDelivery: state.app.selectedDelivery,
     error: state.app.error,
     fetching: state.app.fetching,
@@ -35,6 +36,7 @@ const dispatchActionsToProps = (dispatch) => {
       updateDelivery,
       createDelivery,
       recoverDelivery,
+      setOrder,
     },
     dispatch
   );

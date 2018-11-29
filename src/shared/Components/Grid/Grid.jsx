@@ -1,8 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
 import './grid.css';
+import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 
-const Grid = ({ cols, deliveries, order, dataSource, buttonActions }) => {
+const Grid = ({ cols, deliveries, dataSource, buttonActions, setOrder, order }) => {
 
   const formatBody = () => {
     let grid = [];
@@ -36,15 +37,36 @@ const Grid = ({ cols, deliveries, order, dataSource, buttonActions }) => {
     };
   }
 
+  const handleOrder = (col) => {
+    let ord = col.retrieveOrder ? col.retrieveOrder() : col.defaultOrder;
+    if (col.field === order.field) {
+      if (order.order === 'ASC') ord = 'DESC';
+      if (order.order === 'DESC') ord = 'ASC';
+    }
+    setOrder(col.field, ord, col.sort);
+  }
+
   return(
     <div className='row-fluid' style={{ minHeight: '260px' }}>
       <div className='gridHeader d-flex'>
         {
           cols.map((c) => {
             return (
-              <div className={`headerCell col-${c.width}`}>
+              <div onClick={() => handleOrder(c)} className={`headerCell col-${c.width}`}>
                 <span>
                   {c.title}
+                </span>
+                <span className='orderArrow'>
+                  {
+                    c.field === order.field && order.order === 'ASC' && (
+                      <FaArrowUp />
+                    )
+                  }
+                  {
+                    c.field === order.field && order.order === 'DESC' && (
+                      <FaArrowDown />
+                    )
+                  }
                 </span>
               </div>
             );

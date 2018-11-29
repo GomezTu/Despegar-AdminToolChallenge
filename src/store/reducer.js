@@ -5,6 +5,7 @@ export default (state = initialState, action) => {
 
   let newDeliveries = [];
   let newDelivery = {};
+  let newOrder = {};
 
   switch (action.type) {
     case types.GET_DELIVERY_SUCCESS:
@@ -32,6 +33,9 @@ export default (state = initialState, action) => {
       return { ...state, error: action.payload };
     case types.SIMULATE_API_CALL:
       return { ...state, fetching: true };
+    case types.SET_ORDER:
+      newOrder = action.payload;
+      return { ...state, order: newOrder };
     default:
       return { ...state };
   }
