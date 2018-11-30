@@ -1,5 +1,4 @@
 import React from 'react';
-// import { adminContactInputs } from '../../../constants/shared'
 
 class AdminContactForm extends React.Component {
   constructor(props) {

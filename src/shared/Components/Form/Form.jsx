@@ -152,7 +152,10 @@ class Form extends React.Component {
               </div>
             </div>
             <div>
-              <AdminContactForm config={adminContactInputs} onChange={this.handleChange} isAdmin={true} value={this.state.adminContact} />
+              <AdminContactForm config={adminContactInputs}
+                onChange={this.handleChange}
+                isAdmin={true}
+                value={this.state.adminContact} />
             </div>
           </div>
           <div className='timePicker_wrapper col-6'>
